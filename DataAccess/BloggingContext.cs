@@ -10,7 +10,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=kweis;Username=kweis;Password=kweis");
+            optionsBuilder.UseNpgsql("Host=127.0.0.1;Database=kweis;Username=kweis");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

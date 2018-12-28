@@ -1,14 +1,13 @@
 using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataAccess.EntityConfigurations
 {
     public class PostConfiguration : EntityTypeConfiguration<Post>
     {
-        public PostConfiguration()
+        public override void Configure()
         {
-            EntityTypeBuilder.HasKey(x => x.PostId);
+            Builder.HasKey(x => x.PostId);
+            Builder.HasIndex(x => x.BlogId);
         }
     }
 }

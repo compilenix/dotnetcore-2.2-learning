@@ -43,9 +43,9 @@ namespace DataAccess
                 result = IsSubclassOfGeneric(typeof(EntityTypeConfiguration<>), type);
                 if (!result.IsSpecifiedGenericType) continue;
                 
-                var typeArgs = result.GenericTypeArguments;
-//                var constructed = type.MakeGenericType(typeArgs);
-                var objectInstance = Activator.CreateInstance(type, modelBuilder);
+                var entityTypeConfiguration = Activator.CreateInstance(type) as IEntityTypeConfiguration;
+                entityTypeConfiguration.SetBuilder(modelBuilder);
+                entityTypeConfiguration.Configure();
             }
         }
     }

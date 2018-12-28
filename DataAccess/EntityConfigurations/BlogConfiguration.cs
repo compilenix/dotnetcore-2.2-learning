@@ -1,14 +1,12 @@
 using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataAccess.EntityConfigurations
 {
     public class BlogConfiguration : EntityTypeConfiguration<Blog>
     {
-        public BlogConfiguration()
+        public override void Configure()
         {
-            EntityTypeBuilder.HasKey(x => x.BlogId);
+            Builder.HasKey(x => x.BlogId);
         }
     }
 }

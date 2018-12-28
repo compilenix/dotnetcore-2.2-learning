@@ -1,12 +1,27 @@
+using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataAccess
 {
-    public class EntityTypeConfiguration<T> : EntityTypeBuilder<T> where T : class
+    public class EntityTypeConfiguration<T> : IEntityTypeConfiguration
+        where T : class
     {
-        protected EntityTypeConfiguration(InternalEntityTypeBuilder builder) : base(builder)
+        internal EntityTypeBuilder<T> Builder { get; private set; }
+
+        internal EntityTypeConfiguration()
         {
+        }
+
+        public virtual void Configure()
+        {
+        }
+
+        public void SetBuilder(ModelBuilder builder)
+        {
+            if (builder == null) throw new ArgumentException(nameof(builder));
+            
+            Builder = builder.Entity<T>();
         }
     }
 }
