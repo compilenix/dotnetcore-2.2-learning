@@ -8,6 +8,8 @@ namespace DataAccess.EntityConfigurations
         {
             Builder.HasKey(x => x.PostId);
             Builder.HasIndex(x => x.BlogId);
+            Builder.HasIndex(x => x.Title);
+            Builder.Property(x => x.Content).HasMaxLength(128);
         }
     }
 }

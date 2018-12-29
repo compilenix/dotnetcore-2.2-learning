@@ -12,7 +12,7 @@ namespace DataAccess
             public Type[] GenericTypeArguments { get; set; }
         }
         
-        static SubclassOfGenericResult IsSubclassOfGeneric(Type generic, Type toCheck) {
+        private static SubclassOfGenericResult IsSubclassOfGeneric(Type generic, Type toCheck) {
             while (toCheck != null && toCheck != typeof(object)) {
                 var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
                 if (generic == cur && toCheck.GenericTypeArguments.Length > 0) {
@@ -44,7 +44,8 @@ namespace DataAccess
                 if (!result.IsSpecifiedGenericType) continue;
                 
                 var entityTypeConfiguration = Activator.CreateInstance(type) as IEntityTypeConfiguration;
-                entityTypeConfiguration.SetBuilder(modelBuilder);
+                // TODO: add checks
+                entityTypeConfiguration.RegisterEntityOnModel(modelBuilder);
                 entityTypeConfiguration.Configure();
             }
         }

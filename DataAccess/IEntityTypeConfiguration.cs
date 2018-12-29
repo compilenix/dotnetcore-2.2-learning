@@ -5,6 +5,6 @@ namespace DataAccess
     public interface IEntityTypeConfiguration
     {
         void Configure();
-        void SetBuilder(ModelBuilder builder);
+        void RegisterEntityOnModel(ModelBuilder builder);
     }
 }

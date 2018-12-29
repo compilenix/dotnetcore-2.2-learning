@@ -17,7 +17,7 @@ namespace DataAccess
         {
         }
 
-        public void SetBuilder(ModelBuilder builder)
+        public void RegisterEntityOnModel(ModelBuilder builder)
         {
             if (builder == null) throw new ArgumentException(nameof(builder));
             
