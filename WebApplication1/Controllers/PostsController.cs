@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
+using DataAccess.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,13 +14,12 @@ namespace WebApplication1.Controllers
     {
         // GET api/posts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get()
+        public async Task<ActionResult<IEnumerable<Post>>> Get()
         {
             using (var blog = new BloggingContext())
             {
-                return await blog.Posts.Select(x => x.Content).ToListAsync();
+                return await blog.Set<Post>().ToListAsync();
             }
-            return new[] {"value1", "value2"};
         }
 
         // GET api/values/5
